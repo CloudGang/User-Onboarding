@@ -10,13 +10,14 @@ const FormContainer = ({ props, values, errors, touched, isSubmitting }) => {
     <Form className="form">
       
       <ErrorMessage name="name" />
-      <Field className="field" type="text" name="name" placeholder="name" />
+      <Field data-cy="name" className="field" type="text" name="name" placeholder="name" />
       
       <ErrorMessage name="email" />
-      <Field className="field" type="email" name="email" placeholder="email" />
+      <Field data-cy="email" className="field" type="email" name="email" placeholder="email" />
       
       <ErrorMessage name="password" />
       <Field
+        data-cy="password"
         className="field"
         type="password"
         name="password"
@@ -26,12 +27,12 @@ const FormContainer = ({ props, values, errors, touched, isSubmitting }) => {
       <label>
         
         <ErrorMessage name="tos" />
-        <Field className="field" id="checkbox" type="checkbox" name="tos" />
+        <Field data-cy="tos" className="field" id="checkbox" type="checkbox" name="tos" />
         Terms of Service
 
       </label>
       
-      <button disabled={isSubmitting} type="submit">Submit</button>
+      <button data-cy="submit" disabled={isSubmitting} type="submit">Submit</button>
     
     </Form>
 
@@ -56,7 +57,8 @@ const FormikLoginForm = withFormik({
 
   validationSchema: Yup.object().shape({
 
-    name: Yup.string().required("Your name is required"),
+    name: Yup.string().required("Your name is required")
+      .min(3, "Name needs to be longer"),
     
     email: Yup.string()
 
